@@ -21,11 +21,17 @@ const categories = [
 
 const products = [
   { id: '1', name: 'Quần Jeans Slimfit', price: '550,000 VND', image: 'https://cf.shopee.vn/file/e72e2b4049f80e09b9b9d8c94fd69bbb', category: 'Quần' },
-  { id: '1.2', name: 'Quần Jeans Slimfit1', price: '550,000 VND', image: 'https://cf.shopee.vn/file/e72e2b4049f80e09b9b9d8c94fd69bbb', category: 'Quần' },
-  { id: '1', name: 'Quần Jeans Slimfit', price: '550,000 VND', image: 'https://cf.shopee.vn/file/e72e2b4049f80e09b9b9d8c94fd69bbb', category: 'Quần' },
-  { id: '1', name: 'Quần Jeans Slimfit', price: '550,000 VND', image: 'https://cf.shopee.vn/file/e72e2b4049f80e09b9b9d8c94fd69bbb', category: 'Quần' },
-  { id: '2', name: 'Giày Sneaker Đẳng Cấp', price: '1,200,000 VND', image: 'https://via.placeholder.com/150', category: 'Giày' },
-  { id: '3', name: 'Áo Hoodie Unisex', price: '450,000 VND', image: 'https://via.placeholder.com/150', category: 'Áo' },
+  { id: '1', name: 'Quần Jeans Slimfit1', price: '550,000 VND', image: 'https://cf.shopee.vn/file/8add182357ddd2a36b398d99bd568c50', category: 'Quần' },
+  { id: '1', name: 'Quần Jeans Slimfit', price: '550,000 VND', image: 'https://cf.shopee.vn/file/sg-11134201-22100-mbbhveabu9iv8d', category: 'Quần' },
+  { id: '1', name: 'Quần Jeans Slimfit', price: '550,000 VND', image: 'https://4men.com.vn/thumbs/2020/05/quan-jean-rach-goi-qj004-mau-den-17680-p.png', category: 'Quần' },
+  { id: '2', name: 'Giày Sneaker Đẳng Cấp', price: '1,200,000 VND', image: 'https://giaycaosmartmen.com/wp-content/uploads/2020/12/cach-chup-giay-dep-5.jpg', category: 'Giày' },
+  { id: '2', name: 'Giày Sneaker Đẳng Cấp', price: '1,200,000 VND', image: 'https://www.chuphinhsanpham.vn/wp-content/uploads/2021/06/chup-hinh-giay-dincox-shoes-c-photo-studio-5.jpg', category: 'Giày' },
+  { id: '2', name: 'Giày Sneaker Đẳng Cấp', price: '1,200,000 VND', image: 'https://cf.shopee.vn/file/4107aa56175db071bb34a6c64dcd1074', category: 'Giày' },
+  { id: '2', name: 'Giày Sneaker Đẳng Cấp', price: '1,200,000 VND', image: 'https://giaycaosmartmen.com/wp-content/uploads/2020/12/cach-chup-giay-dep-5.jpg', category: 'Giày' },
+  { id: '3', name: 'Áo Hoodie Unisex', price: '450,000 VND', image: 'https://thuthuatnhanh.com/wp-content/uploads/2022/08/ao-thun-in-hinh-theo-yeu-cau.jpg', category: 'Áo' },
+  { id: '3', name: 'Áo Hoodie Unisex', price: '450,000 VND', image: 'https://bizweb.dktcdn.net/thumb/1024x1024/100/399/392/products/ls.png', category: 'Áo' },
+  { id: '3', name: 'Áo Hoodie Unisex', price: '450,000 VND', image: 'https://dosi-in.com/images/detailed/42/CDL10_1.jpg', category: 'Áo' }, 
+  { id: '3', name: 'Áo Hoodie Unisex', price: '450,000 VND', image: 'https://mayvinhthanh.vn/wp-content/uploads/2021/03/ao-phong-trang-co-co-3.jpg', category: 'Áo' },  
 ];
 
 const HomeScreen = ({ navigation }) => {
@@ -95,29 +101,34 @@ const HomeScreen = ({ navigation }) => {
 
       {/* Danh sách sản phẩm */}
       <FlatList
-        data={filteredProducts}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-        contentContainerStyle={styles.productList}
-        style={{ flexGrow: 1 }}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.productCard} onPress={() => navigation.navigate('ProductDetail', { product: item })}>
-            <Image source={{ uri: item.image }} style={styles.productImage} />
-            <Text style={styles.productName}>{item.name}</Text>
-            <Text style={styles.productPrice}>{item.price}</Text>
-          </TouchableOpacity>
-        )}
-      />
+  data={filteredProducts}
+  keyExtractor={(item, index) => item.id + '-' + index} // Thêm index để đảm bảo key là duy nhất
+  numColumns={2}
+  contentContainerStyle={styles.productList}
+  style={{ flexGrow: 1 }}
+  renderItem={({ item }) => (
+    <TouchableOpacity style={styles.productCard} onPress={() => navigation.navigate('ProductDetail', { product: item })}>
+      <Image source={{ uri: item.image }} style={styles.productImage} />
+      <Text style={styles.productName}>{item.name}</Text>
+      <Text style={styles.productPrice}>{item.price}</Text>
+    </TouchableOpacity>
+  )}
+/>
+
       <View style={styles.bottomNav}>
-  <TouchableOpacity style={styles.navButton}>
-    <Ionicons name="cart" size={24} color="#333" />
-    <Text>Mua Hàng</Text>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Profile')}>
-    <Ionicons name="person" size={24} color="#333" />
-    <Text>Profile</Text>
-  </TouchableOpacity>
-</View>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Home')}>
+          <Ionicons name="home" size={24} color="#333" />
+          <Text>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Cart')}>
+          <Ionicons name="cart" size={24} color="#333" />
+          <Text>Cart</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Profile')}>
+          <Ionicons name="person" size={24} color="#333" />
+          <Text>Profile</Text>
+        </TouchableOpacity>
+      </View>
 
     </View>
   );

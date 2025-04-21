@@ -8,6 +8,8 @@ import HomeScreen from './Screens/HomeScreen';
 import ProductDetailScreen from './Screens/ProductDetailScreen';
 import CartScreen from './Screens/CartScreen';
 import ProfileScreen from './Screens/Profile';
+import CheckoutScreen from './Screens/CheckoutScreen';  // Thêm màn hình nhập địa chỉ
+import PaymentScreen from './Screens/PaymentScreen';   // Thêm màn hình thanh toán
 
 const Stack = createStackNavigator();
 
@@ -28,14 +30,18 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} options={{ title: 'Đăng ký' }} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="ProductDetail" component={ProductDetailScreen} options={{ title: 'Chi tiết sản phẩm' }} />
-        <Stack.Screen name="Cart" component={CartScreen} options={{ title: 'Giỏ hàng' }} />
-        <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'Hồ sơ' }} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+      <Stack.Screen name="Cart" component={CartScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
+      <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+
+      {/* Thêm dòng này */}
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 }
